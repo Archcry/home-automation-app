@@ -1,2 +1,3 @@
 # home-automation-app
-React app for hoem automation
+
+React app for home automation
