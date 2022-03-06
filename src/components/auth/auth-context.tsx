@@ -1,4 +1,4 @@
-import { createContext, ReactChild, useState } from "react";
+import { createContext, ReactChild, useContext, useState } from "react";
 
 interface AuthContextType {
   username?: string;
@@ -6,11 +6,13 @@ interface AuthContextType {
   login: (username: string, password: string) => void;
 }
 
-export const AuthContext = createContext<AuthContextType>({
+const AuthContext = createContext<AuthContextType>({
   username: undefined,
   password: undefined,
   login: () => {},
 });
+
+export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }: { children: ReactChild }) => {
   const [credentials, setCredentials] = useState<Omit<

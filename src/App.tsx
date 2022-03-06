@@ -1,6 +1,9 @@
-import { Login } from "./components/auth/login";
+import { Login } from "./pages/login";
 import "./App.css";
 import { AuthProvider } from "./components/auth/auth-context";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { RequiresAuth } from "./components/auth/requires-auth";
+import { Home } from "./pages/home";
 
 declare global {
   interface Window {
@@ -11,7 +14,14 @@ declare global {
 function App() {
   return (
     <AuthProvider>
-      <Login />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<RequiresAuth redirectTo="/login" />}>
+            <Route path="/" element={<Home />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </AuthProvider>
   );
 }

@@ -10,13 +10,14 @@ import {
   Button,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { useContext } from "react";
-import { AuthContext } from "./auth-context";
+import { useAuthContext } from "../components/auth/auth-context";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
 export const Login = () => {
-  const { login } = useContext(AuthContext);
+  const { login } = useAuthContext();
+  const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -27,6 +28,8 @@ export const Login = () => {
 
     if (username && password) {
       login(username, password);
+
+      navigate("/");
     }
   };
 
