@@ -1,10 +1,11 @@
 import { Login } from "./pages/login";
 import "./App.css";
 import { AuthProvider } from "./components/auth/auth-context";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { RequiresAuth } from "./components/auth/requires-auth";
-import { Home } from "./pages/home";
 import { createTheme, ThemeProvider } from "@mui/material";
+import { DeviceGroups } from "./pages/somfy/device-groups";
+import { Devices } from "./pages/somfy/devices";
 
 declare global {
   interface Window {
@@ -26,7 +27,12 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<RequiresAuth redirectTo="/login" />}>
-              <Route path="/" element={<Home />} />
+              <Route
+                path="/"
+                element={<Navigate to="/shutter/deviceGroups" />}
+              />
+              <Route path="/shutter/deviceGroups" element={<DeviceGroups />} />
+              <Route path="/shutter/deviceGroup/:uid" element={<Devices />} />
             </Route>
           </Routes>
         </BrowserRouter>
