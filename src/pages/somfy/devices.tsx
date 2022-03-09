@@ -1,21 +1,12 @@
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  ButtonGroup,
-  Button,
-  Grid,
-  Link,
-} from "@mui/material";
-import axios, { AxiosResponse } from "axios";
-import { useEffect, useState } from "react";
-import { useAuthContext } from "../../components/auth/auth-context";
-import { Layout } from "../../components/layout/layout";
-import { DeviceGroup, Device } from "./types";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { Link as RouterLink, useParams } from "react-router-dom";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import { Box, Button, ButtonGroup, Card, CardContent, Grid, Typography } from '@mui/material';
+import axios, { AxiosResponse } from 'axios';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useAuthContext } from '../../components/auth/auth-context';
+import { Layout } from '../../components/layout/layout';
+import { Device, DeviceGroup } from './types';
 
 export const Devices = () => {
   const apiUrl = window._env_.SOMFY_API_URL;
@@ -27,15 +18,12 @@ export const Devices = () => {
 
   useEffect(() => {
     axios
-      .get<void, AxiosResponse<DeviceGroup[], any>>(
-        `${apiUrl}/shutter/deviceGroups`,
-        {
-          auth: {
-            username: username ?? "",
-            password: password ?? "",
-          },
-        }
-      )
+      .get<void, AxiosResponse<DeviceGroup[], any>>(`${apiUrl}/shutter/deviceGroups`, {
+        auth: {
+          username: username ?? '',
+          password: password ?? '',
+        },
+      })
       .then((response) => response.data)
       .then((deviceGroups) => deviceGroups.find((dg) => dg.uid === uid))
       .then((deviceGroup) => deviceGroup?.devices ?? [])
@@ -50,8 +38,8 @@ export const Devices = () => {
       },
       {
         auth: {
-          username: username ?? "",
-          password: password ?? "",
+          username: username ?? '',
+          password: password ?? '',
         },
       }
     );
@@ -67,24 +55,20 @@ export const Devices = () => {
                 <CardContent>
                   <Box
                     sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
                     }}
                   >
                     <Typography component="div" variant="h5">
                       {name}
                     </Typography>
-                    <ButtonGroup
-                      size="small"
-                      variant="contained"
-                      aria-label="outlined primary button group"
-                    >
-                      <Button onClick={() => sendCommand(uid, "up")}>
+                    <ButtonGroup size="small" variant="contained" aria-label="outlined primary button group">
+                      <Button onClick={() => sendCommand(uid, 'up')}>
                         <ArrowDropUpIcon />
                       </Button>
-                      <Button onClick={() => sendCommand(uid, "my")}>My</Button>
-                      <Button onClick={() => sendCommand(uid, "down")}>
+                      <Button onClick={() => sendCommand(uid, 'my')}>My</Button>
+                      <Button onClick={() => sendCommand(uid, 'down')}>
                         <ArrowDropDownIcon />
                       </Button>
                     </ButtonGroup>

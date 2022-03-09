@@ -1,17 +1,7 @@
-import {
-  Box,
-  createTheme,
-  CssBaseline,
-  ThemeProvider,
-  Container,
-  Avatar,
-  Typography,
-  TextField,
-  Button,
-} from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { useAuthContext } from "../components/auth/auth-context";
-import { useNavigate } from "react-router-dom";
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { Avatar, Box, Button, Container, CssBaseline, TextField, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../components/auth/auth-context';
 
 export const Login = () => {
   const { login } = useAuthContext();
@@ -21,13 +11,13 @@ export const Login = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    const username = data.get("username") as string;
-    const password = data.get("password") as string;
+    const username = data.get('username') as string;
+    const password = data.get('password') as string;
 
     if (username && password) {
       login(username, password);
 
-      navigate("/");
+      navigate('/');
     }
   };
 
@@ -37,27 +27,19 @@ export const Login = () => {
       <Box
         sx={{
           marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            label="username"
-            name="username"
-            autoFocus
-          />
+          <TextField margin="normal" required fullWidth id="username" label="username" name="username" autoFocus />
           <TextField
             margin="normal"
             required
@@ -67,12 +49,7 @@ export const Login = () => {
             type="password"
             id="password"
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
+          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
             Sign In
           </Button>
         </Box>

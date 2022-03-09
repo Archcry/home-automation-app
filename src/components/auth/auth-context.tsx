@@ -1,4 +1,4 @@
-import { createContext, ReactChild, useContext, useState } from "react";
+import { createContext, ReactChild, useContext, useState } from 'react';
 
 interface AuthContextType {
   username?: string;
@@ -15,17 +15,14 @@ const AuthContext = createContext<AuthContextType>({
 export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }: { children: ReactChild }) => {
-  const [credentials, setCredentials] = useState<Omit<
-    Partial<AuthContextType>,
-    "login"
-  > | null>({
-    username: localStorage.getItem("username") ?? undefined,
-    password: localStorage.getItem("password") ?? undefined,
+  const [credentials, setCredentials] = useState<Omit<Partial<AuthContextType>, 'login'> | null>({
+    username: localStorage.getItem('username') ?? undefined,
+    password: localStorage.getItem('password') ?? undefined,
   });
 
   const login = (username: string, password: string) => {
-    localStorage.setItem("username", username.toLowerCase());
-    localStorage.setItem("password", password);
+    localStorage.setItem('username', username.toLowerCase());
+    localStorage.setItem('password', password);
 
     setCredentials({
       username: username.toLowerCase(),
@@ -33,9 +30,5 @@ export const AuthProvider = ({ children }: { children: ReactChild }) => {
     });
   };
 
-  return (
-    <AuthContext.Provider value={{ ...credentials, login }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ ...credentials, login }}>{children}</AuthContext.Provider>;
 };

@@ -1,5 +1,5 @@
-import { Navigate, Outlet } from "react-router-dom";
-import { useAuthContext } from "./auth-context";
+import { Navigate, Outlet } from 'react-router-dom';
+import { useAuthContext } from './auth-context';
 
 export interface RequiresAuthProps {
   redirectTo: string;

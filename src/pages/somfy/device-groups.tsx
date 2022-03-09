@@ -1,23 +1,12 @@
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  ButtonGroup,
-  Button,
-  CardActionArea,
-  Grid,
-  Link,
-} from "@mui/material";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useAuthContext } from "../../components/auth/auth-context";
-import { Layout } from "../../components/layout/layout";
-import { DeviceGroup, Device } from "./types";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import WindowIcon from "@mui/icons-material/Window";
-import { Link as RouterLink } from "react-router-dom";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import { Box, Button, ButtonGroup, Card, CardContent, Grid, Link, Typography } from '@mui/material';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import { useAuthContext } from '../../components/auth/auth-context';
+import { Layout } from '../../components/layout/layout';
+import { Device, DeviceGroup } from './types';
 
 export const DeviceGroups = () => {
   const apiUrl = window._env_.SOMFY_API_URL;
@@ -29,8 +18,8 @@ export const DeviceGroups = () => {
     axios
       .get(`${apiUrl}/shutter/deviceGroups`, {
         auth: {
-          username: username ?? "",
-          password: password ?? "",
+          username: username ?? '',
+          password: password ?? '',
         },
       })
       .then((response) => setDeviceGroups(response.data));
@@ -44,8 +33,8 @@ export const DeviceGroups = () => {
       },
       {
         auth: {
-          username: username ?? "",
-          password: password ?? "",
+          username: username ?? '',
+          password: password ?? '',
         },
       }
     );
@@ -61,32 +50,22 @@ export const DeviceGroups = () => {
                 <CardContent>
                   <Box
                     sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
                     }}
                   >
                     <Typography component="div" variant="h5">
-                      <Link
-                        component={RouterLink}
-                        to={`/shutter/deviceGroup/${uid}`}
-                        underline="none"
-                      >
+                      <Link component={RouterLink} to={`/shutter/deviceGroup/${uid}`} underline="none">
                         {name}
                       </Link>
                     </Typography>
-                    <ButtonGroup
-                      size="small"
-                      variant="contained"
-                      aria-label="outlined primary button group"
-                    >
-                      <Button onClick={() => sendCommand(devices, "up")}>
+                    <ButtonGroup size="small" variant="contained" aria-label="outlined primary button group">
+                      <Button onClick={() => sendCommand(devices, 'up')}>
                         <ArrowDropUpIcon />
                       </Button>
-                      <Button onClick={() => sendCommand(devices, "my")}>
-                        My
-                      </Button>
-                      <Button onClick={() => sendCommand(devices, "down")}>
+                      <Button onClick={() => sendCommand(devices, 'my')}>My</Button>
+                      <Button onClick={() => sendCommand(devices, 'down')}>
                         <ArrowDropDownIcon />
                       </Button>
                     </ButtonGroup>
