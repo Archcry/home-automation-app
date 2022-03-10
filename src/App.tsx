@@ -1,8 +1,8 @@
-import { createTheme, ThemeProvider } from '@mui/material';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { AuthProvider } from './components/auth/auth-context';
 import { RequiresAuth } from './components/auth/requires-auth';
+import { ThemeProvider } from './components/layout/theme-provider';
 import { Login } from './pages/login';
 import { DeviceGroups } from './pages/somfy/device-groups';
 import { Devices } from './pages/somfy/devices';
@@ -13,15 +13,9 @@ declare global {
   }
 }
 
-const theme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
-
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider>
       <AuthProvider>
         <BrowserRouter>
           <Routes>
