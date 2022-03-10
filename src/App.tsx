@@ -15,7 +15,7 @@ declare global {
 
 function App() {
   return (
-    <ThemeProvider>
+    <ThemeProvider storage={localStorage}>
       <AuthProvider>
         <BrowserRouter>
           <Routes>

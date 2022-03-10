@@ -14,9 +14,14 @@ export const ThemeContext = createContext({
 
 export const useThemeContext = () => useContext(ThemeContext);
 
-export const ThemeProvider = ({ children }: { children: ReactElement }) => {
+export interface ThemeProviderProps {
+  children: ReactElement;
+  storage: Pick<Storage, 'setItem' | 'getItem'>;
+}
+
+export const ThemeProvider = ({ children, storage }: ThemeProviderProps) => {
   const getPaletteModeFromLocalStorage = () => {
-    const mode = localStorage.getItem('theme.palette.mode');
+    const mode = storage.getItem('theme.palette.mode');
 
     if (['light', 'dark'].includes(mode ?? '')) {
       return mode as PaletteMode;
@@ -37,7 +42,7 @@ export const ThemeProvider = ({ children }: { children: ReactElement }) => {
   const toggleDarkMode = () => {
     const newMode = theme.palette.mode === 'light' ? 'dark' : 'light';
 
-    localStorage.setItem('theme.palette.mode', newMode);
+    storage.setItem('theme.palette.mode', newMode);
 
     setTheme(
       createTheme({
