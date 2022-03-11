@@ -6,6 +6,7 @@ import { ThemeProvider } from './components/layout/theme-provider';
 import { Login } from './pages/login';
 import { DeviceGroups } from './pages/somfy/device-groups';
 import { Devices } from './pages/somfy/devices';
+import { Schedules } from './pages/somfy/schedules';
 
 declare global {
   interface Window {
@@ -24,6 +25,7 @@ function App() {
               <Route path="/" element={<Navigate to="/shutter/deviceGroups" />} />
               <Route path="/shutter/deviceGroups" element={<DeviceGroups />} />
               <Route path="/shutter/deviceGroup/:uid" element={<Devices />} />
+              <Route path="/shutter/schedules" element={<Schedules />} />
             </Route>
           </Routes>
         </BrowserRouter>

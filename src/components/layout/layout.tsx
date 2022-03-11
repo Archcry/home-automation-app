@@ -5,6 +5,7 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
+import ScheduleIcon from '@mui/icons-material/Schedule';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
@@ -110,6 +111,12 @@ export const Layout = ({ children }: LayoutProps) => {
                     </ListItemIcon>
                     <ListItemText primary="Shutters" secondary="Control the shutters" />
                   </ListItem>
+                  <ListItem button component={Link} to="/shutter/schedules">
+                    <ListItemIcon>
+                      <ScheduleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Schedules" secondary="View the schedules" />
+                  </ListItem>
                 </List>
               </Box>
               <Box>
@@ -125,7 +132,7 @@ export const Layout = ({ children }: LayoutProps) => {
               </Box>
             </Box>
           </Drawer>
-          <Main drawerWidth={drawerWidth}>
+          <Main drawerWidth={drawerWidth} sx={{ width: 1 }}>
             <DrawerHeader />
             {children}
           </Main>
