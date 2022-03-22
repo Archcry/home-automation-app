@@ -24,8 +24,8 @@ export const AuthProvider = ({ children }: { children: ReactChild }) => {
   });
 
   const login = (username: string, password: string) => {
-    Cookies.set('username', username.toLowerCase());
-    Cookies.set('password', password);
+    Cookies.set('username', username.toLowerCase(), { expires: 1 });
+    Cookies.set('password', password, { expires: 1 });
 
     setCredentials({
       username: username.toLowerCase(),
