@@ -1,6 +1,7 @@
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import { Box, Button, ButtonGroup, Card, CardContent, Grid, Link, Typography } from '@mui/material';
+import WindowIcon from '@mui/icons-material/Window';
+import { Box, Button, ButtonGroup, Card, CardContent, Chip, Divider, Grid, Link, Typography } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
@@ -53,6 +54,7 @@ export const DeviceGroups = () => {
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'center',
+                      mb: 2,
                     }}
                   >
                     <Typography component="div" variant="h5">
@@ -69,6 +71,16 @@ export const DeviceGroups = () => {
                         <ArrowDropDownIcon />
                       </Button>
                     </ButtonGroup>
+                  </Box>
+                  <Divider />
+                  <Box sx={{ mt: 2 }}>
+                    <Grid container direction="row" spacing={1}>
+                      {devices.map(({ uid, name }) => (
+                        <Grid key={uid} item>
+                          <Chip size="small" label={name} icon={<WindowIcon />} />
+                        </Grid>
+                      ))}
+                    </Grid>
                   </Box>
                 </CardContent>
               </Card>
